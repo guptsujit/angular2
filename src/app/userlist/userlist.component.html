@@ -1,0 +1,43 @@
+
+<div >Total rows : {{count}}</div>
+<div *ngIf = "statusMessage" class="alert alert-success">
+{{statusMessage}}
+  </div>
+  
+<div align="center">
+<input type="text" [(ngModel)]="searchTxt">
+</div>
+
+<table class="table" *ngIf="users">
+ 
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>Website</th>
+      <th>Hosting</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let key of users |filter:searchTxt | orderBy: ["username"]' id="tr_{{key.id}}">
+      <td>{{key.username}}</td>
+      <td>{{key.email}}</td>
+      <td>{{key.phone}}</td>
+      <td>{{key.state}}</td>
+      <td>{{key.zip}}</td> 
+      <td>{{key.website}}</td>
+      <td>{{key.hosting}}</td>
+      <td>
+        <a class="main-link"   [routerLink] ="['/contactus', key.id]" class="btn btn-info">Update</a>
+        <button class="main-link"   (click) = "deleteUser(key.id,key)" class="btn btn-info">Delete</button>
+      
+      </td>
+    </tr>
+    
+  </tbody>
+  
+</table>
