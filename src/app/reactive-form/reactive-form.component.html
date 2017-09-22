@@ -1,36 +1,20 @@
-<div *ngIf="isSubmitted">
-  <div class = "alert alert-success" style="text-align:center">
-    Indicates a successful or positive action.
-  </div></div>
-
-  <div *ngIf="errorMessage">
-    <div class = "alert alert-success" style="text-align:center">
-    {{errorMessage}}
-    </div></div>
-
-    {{firstname}}
-<div class="container" *ngIf = "!errorMessage">
-  <form class="well form-horizontal" action=" " method="post" id="contact_form" #formData="ngForm" (ngSubmit)="processForm(formData)" *ngIf="!isSubmitted">
+<div class="container">
+  <form class="well form-horizontal" [formGroup]="form" (ngSubmit)="processForm()">
     <fieldset>
 
-      <!-- Text input-->
-     <!-- <p> valid: {{name.valid}} </p>
-      <p> touch: {{name.touched}} </p>
-      <p> pristine: {{name.pristine}} </p>
-      <p> dirty: {{name.dirty}} </p>-->
-      <input  [(ngModel)]="model.id"  name="id"  class="form-control" type="hidden">
-      
+
       <div class="form-group">
         <label class="col-md-4 control-label">Name</label>
         <div class="col-md-4 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input minlength="4" [(ngModel)]="model.username" name="username" required placeholder="First Name" class="form-control"
-              type="text" #name="ngModel">
-            <div *ngIf="name.invalid && (name.dirty || name.touched || formData.submitted)">
-              <span class="help-block" *ngIf="name.errors.required">Name is required</span>
-              <span class="help-block" *ngIf="name.errors.minlength">Name should be at least 4 characters</span>
-            </div>
+            <input formControlName="username" placeholder="First Name" class="form-control" type="text">
+
+            <span class="help-block" *ngIf="formError.username">
+                  {{formError.username}}
+              </span>
+
+
           </div>
         </div>
       </div>
@@ -39,9 +23,10 @@
         <div class="col-md-4 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input [(ngModel)]="model.color" name="color"  placeholder="color" class="form-control"
-              type="text"  [style.background-color]="model.color">
-         
+            <input formControlName="color" placeholder="color" class="form-control" type="text" [style.background-color]="color">
+            <span class="help-block" *ngIf="formError.color">
+              {{formError.color}}
+          </span>
           </div>
         </div>
       </div>
@@ -53,11 +38,10 @@
         <div class="col-md-4 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input name="email" [(ngModel)]="model.email" #useremail="ngModel" ngModel placeholder="E-Mail Address" class="form-control"
-              type="text" required>
-            <div *ngIf="useremail.invalid && (useremail.dirty || useremail.touched)">
-              <span class="help-block" *ngIf="useremail.errors.required">Email is required</span>
-            </div>
+            <input formControlName="email" placeholder="E-Mail Address" class="form-control" type="text">
+            <span class="help-block" *ngIf="formError.email">
+              {{formError.email}}
+          </span>
 
           </div>
         </div>
@@ -71,26 +55,24 @@
         <div class="col-md-4 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-            <input name="phone" [(ngModel)]="model.phone" #userphone="ngModel" placeholder="(845)555-1212" class="form-control" type="text" required>
-
-            <div *ngIf="userphone.invalid && (userphone.dirty || userphone.touched)">
-              <span class="help-block" *ngIf="userphone.errors.required">Phone is required</span>
-            </div>
-
+            <input formControlName="phone" placeholder="(845)555-1212" class="form-control" type="text">
+            <span class="help-block" *ngIf="formError.phone">
+              {{formError.phone}}
+          </span>
           </div>
         </div>
       </div>
 
       <!-- Text input-->
 
-    
+
 
       <div class="form-group">
         <label class="col-md-4 control-label">State</label>
         <div class="col-md-4 selectContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-            <select name="state" [(ngModel)]="model.state" class="form-control selectpicker" #userstate="ngModel" required>
+            <select formControlName="state" class="form-control selectpicker">
         <option value="">Please select your state</option>
         <option>Alabama</option>
         <option>Alaska</option>
@@ -144,9 +126,9 @@
         <option>Wisconsin</option>
         <option >Wyoming</option>
       </select>
-            <div *ngIf="userstate.invalid && (userstate.dirty || userstate.touched)">
-              <span class="help-block" *ngIf="userstate.errors.required">Please select a state</span>
-            </div>
+            <span class="help-block" *ngIf="formError.state">
+        {{formError.state}}
+    </span>
           </div>
         </div>
       </div>
@@ -158,10 +140,10 @@
         <div class="col-md-4 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-            <input name="zip" [(ngModel)]="model.zip" placeholder="Zip Code" #zipcode="ngModel" class="form-control" type="text" required>
-            <div *ngIf="zipcode.invalid && (zipcode.dirty || zipcode.touched)">
-              <span class="help-block" *ngIf="zipcode.errors.required">Zipcode is required</span>
-            </div>
+            <input formControlName="zip" placeholder="Zip Code" class="form-control" type="text">
+            <span class="help-block" *ngIf="formError.zip">
+              {{formError.zip}}
+          </span>
           </div>
         </div>
       </div>
@@ -172,12 +154,11 @@
         <div class="col-md-4 inputGroupContainer">
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-            <input name="website" [(ngModel)]="model.website" #web="ngModel" placeholder="Website or domain name" class="form-control"
-              type="text" required>
+            <input formControlName="website" placeholder="Website or domain name" class="form-control" type="text">
+            <span class="help-block" *ngIf="formError.website">
+              {{formError.website}}
+          </span>
 
-            <div *ngIf="web.invalid && (web.dirty || web.touched)">
-              <span class="help-block" *ngIf="web.errors.required">website is required</span>
-            </div>
           </div>
         </div>
       </div>
@@ -188,38 +169,76 @@
         <div class="col-md-4">
           <div class="radio">
             <label>
-                                      <input type="radio"  [(ngModel)] = "model.hosting" #host="ngModel" name="hosting" value="yes" required/> Yes
+                                      <input type="radio"  formControlName="hosting" value="yes" /> Yes
                                   </label>
           </div>
           <div class="radio">
             <label>
-                                      <input type="radio" [(ngModel)] = "model.hosting" name="hosting" #host="ngModel" value="no" required/> No
+                                      <input type="radio" value="no" formControlName="hosting"/> No
                                   </label>
-       
-                                  <div *ngIf="host.invalid && (host.dirty || host.touched)">
-                                    <span class="help-block" *ngIf="host.errors.required">Hosting is required</span>
-                                  </div>
-       
-                                </div>
+            <span class="help-block" *ngIf="formError.hosting">
+                                    {{formError.hosting}}
+                                </span>
+
+          </div>
         </div>
       </div>
 
       <!-- Text area -->
-
+  
 
       <!-- Success message -->
+      <div formArrayName="addresses">
+        <div *ngFor = "let address of form.controls.addresses['controls'];let i=index" >
+          <div [formGroupName]="i">
+              {{i}}
+          <div class="form-group">
+            <label class="col-md-4 control-label">City1</label>
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                <input formControlName="city1" placeholder="Zip Code" class="form-control" type="text">
+            
+              </div>
+            </div>
+          </div>
 
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-md-4 control-label">City2</label>
+            <div class="col-md-4 inputGroupContainer">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                <input formControlName="city2" placeholder="Website or domain name" class="form-control" type="text">
+        
+
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
 
       <!-- Button -->
       <div class="form-group">
         <label class="col-md-4 control-label"></label>
         <div class="col-md-4">
           <button type="submit" class="btn btn-warning">Send <span class="glyphicon glyphicon-send"></span></button>
+       
         </div>
       </div>
 
     </fieldset>
   </form>
-  
+  <div class="form-group">
+    <label class="col-md-4 control-label"></label>
+    <div class="col-md-4">
+      <button class="main-link"   (click) = "addInput()" class="btn btn-info">ADD</button>
+    </div>
+  </div>
+
 </div>
 <div>

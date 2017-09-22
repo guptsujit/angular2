@@ -37,6 +37,24 @@ export class UserlistComponent implements OnInit {
       });
    
   }
+ /* fetchUsers() {
+    this.contactUsService.getUserList()
+      .subscribe(function(response){
+        console.log(response);
+        this.users = response; 
+        this.count = Object.keys(response).length;
+        if(!this.count){
+          this.statusMessage = "No user found.";
+        }
+      },function(error){
+        this.statusMessage = "Something went wrong.Please try again later.";
+      }
+
+    
+    );
+        
+   
+  }*/
   deleteUser(userId,key){
 
     this.contactUsService.removeUser(userId)

@@ -17,10 +17,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import {PaginationDirective} from 'angular2-bootstrap-pagination/directives/pagination.directive';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contactus',   component: ContactusFormComponent },
+  { path: 'signup', component: ReactiveFormComponent },
   { path: 'contactus/:userid',   component: ContactusFormComponent },
   { path: 'userlist', component: UserlistComponent },
   { path: '**', redirectTo: 'pagenotfound' },
@@ -40,9 +43,10 @@ const appRoutes: Routes = [
     UserlistComponent,
     PageNotFoundComponent,
     PaginationDirective,
+    ReactiveFormComponent,
   ],
   imports: [
-    BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes),Ng2SearchPipeModule,Ng2OrderModule
+    BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes),Ng2SearchPipeModule,Ng2OrderModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

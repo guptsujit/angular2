@@ -23,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let key of users |filter:searchTxt | orderBy: ["username"]' id="tr_{{key.id}}">
+    <tr *ngFor='let key of users |filter:searchTxt |  orderBy: ["username"] ' id="tr_{{key.id}}">
       <td>{{key.username}}</td>
       <td>{{key.email}}</td>
       <td>{{key.phone}}</td>
@@ -34,7 +34,6 @@
       <td>
         <a class="main-link"   [routerLink] ="['/contactus', key.id]" class="btn btn-info">Update</a>
         <button class="main-link"   (click) = "deleteUser(key.id,key)" class="btn btn-info">Delete</button>
-      
       </td>
     </tr>
     

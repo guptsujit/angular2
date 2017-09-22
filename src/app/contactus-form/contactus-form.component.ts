@@ -17,6 +17,7 @@ export class ContactusFormComponent implements OnInit {
   errorMessage: string;
   model = new Modeldata();
   userid: number;
+
   constructor(private contactUsService: Contactus, private _router: Router, private _activatedRoute: ActivatedRoute) {
 
   }
@@ -43,8 +44,9 @@ export class ContactusFormComponent implements OnInit {
     return JSON.stringify(this.model);
   }
   processForm(formData): void {
-
-    console.log(formData.value.id);
+   // formData.form.controls['arrayOne'].push(this.address);
+   // formData.form.controls;
+    //console.log(formData.form.controls.id);
     if (formData.valid) {
       if (!formData.value.id) {
         this.contactUsService.addContactUsWithObservable(formData.value)
