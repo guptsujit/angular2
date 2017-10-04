@@ -1,0 +1,11 @@
+
+    <div>
+     
+          <input type="radio" [(ngModel)] = "selectedRadioButtonValue" value="all"  checked  
+        (change) = "onRadioButtonSelectionChange()"/> All({{all}})
+       <input type="radio"   [(ngModel)] = "selectedRadioButtonValue" value="male" 
+       (change) = "onRadioButtonSelectionChange()"/> Male({{male}})
+       <input type="radio"  [(ngModel)] = "selectedRadioButtonValue" value="female" 
+       (change) = "onRadioButtonSelectionChange()"/> Female({{female}})
+
+    </div>

@@ -8,7 +8,7 @@ export class Modeldata{
     state:string;
     zip:any;
     website:string;
-    hosting:string;
+    gender:string;
     constructor() {
           this.id = 0;
           this.username = "";
@@ -18,7 +18,7 @@ export class Modeldata{
           this.state = "";
           this.zip = "";
           this.website = "";
-          this.hosting = "";
+          this.gender = "";
          
     
     }

@@ -8,7 +8,7 @@ export interface Iuserdata{
     state:string;
     zip:any;
     website:string;
-    hosting:string;
+    gender:string;
 
 
 } 

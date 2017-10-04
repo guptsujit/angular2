@@ -19,6 +19,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import {PaginationDirective} from 'angular2-bootstrap-pagination/directives/pagination.directive';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { UsercountComponent } from './usercount/usercount.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'aboutus', component: AboutusComponent },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     PaginationDirective,
     ReactiveFormComponent,
+    UsercountComponent,
   ],
   imports: [
     BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes),Ng2SearchPipeModule,Ng2OrderModule,ReactiveFormsModule

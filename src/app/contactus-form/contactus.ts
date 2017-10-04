@@ -48,8 +48,8 @@ export class Contactus {
     getUserList(): Observable<Modeldata[]> {
         let url = "http://localhost/api/db.php?action=get_user";
         return this._http.get(url)
-            .map(this.extractData)
-            .catch(this.handleErrorObservable);
+            .map(this.extractData);
+            //.catch(this.handleErrorObservable);
     }
 
     getUserDetail(userid): Observable<Modeldata> {

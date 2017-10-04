@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-   pagetitle:string = "Welcome to autism alliance";
+   pagetitle:string = "Welcome to app";
   constructor() { }
 
   ngOnInit() {

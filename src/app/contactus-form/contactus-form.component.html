@@ -14,10 +14,10 @@
     <fieldset>
 
       <!-- Text input-->
-     <!-- <p> valid: {{name.valid}} </p>
+      <p> valid: {{name.valid}} </p>
       <p> touch: {{name.touched}} </p>
       <p> pristine: {{name.pristine}} </p>
-      <p> dirty: {{name.dirty}} </p>-->
+      <p> dirty: {{name.dirty}} </p>
       <input  [(ngModel)]="model.id"  name="id"  class="form-control" type="hidden">
       
       <div class="form-group">
@@ -54,9 +54,10 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
             <input name="email" [(ngModel)]="model.email" #useremail="ngModel" ngModel placeholder="E-Mail Address" class="form-control"
-              type="text" required>
-            <div *ngIf="useremail.invalid && (useremail.dirty || useremail.touched)">
+              type="text" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+            <div *ngIf="useremail.invalid && (useremail.dirty || useremail.touched || formData.submitted)">
               <span class="help-block" *ngIf="useremail.errors.required">Email is required</span>
+              <span class="help-block" *ngIf="useremail.errors.pattern">Invalid email</span>
             </div>
 
           </div>
@@ -73,7 +74,7 @@
             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
             <input name="phone" [(ngModel)]="model.phone" #userphone="ngModel" placeholder="(845)555-1212" class="form-control" type="text" required>
 
-            <div *ngIf="userphone.invalid && (userphone.dirty || userphone.touched)">
+            <div *ngIf="userphone.invalid && (userphone.dirty || userphone.touched || formData.submitted)">
               <span class="help-block" *ngIf="userphone.errors.required">Phone is required</span>
             </div>
 
@@ -144,7 +145,7 @@
         <option>Wisconsin</option>
         <option >Wyoming</option>
       </select>
-            <div *ngIf="userstate.invalid && (userstate.dirty || userstate.touched)">
+            <div *ngIf="userstate.invalid && (userstate.dirty || userstate.touched || formData.submitted)">
               <span class="help-block" *ngIf="userstate.errors.required">Please select a state</span>
             </div>
           </div>
@@ -159,7 +160,7 @@
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
             <input name="zip" [(ngModel)]="model.zip" placeholder="Zip Code" #zipcode="ngModel" class="form-control" type="text" required>
-            <div *ngIf="zipcode.invalid && (zipcode.dirty || zipcode.touched)">
+            <div *ngIf="zipcode.invalid && (zipcode.dirty || zipcode.touched || formData.submitted)">
               <span class="help-block" *ngIf="zipcode.errors.required">Zipcode is required</span>
             </div>
           </div>
@@ -175,7 +176,7 @@
             <input name="website" [(ngModel)]="model.website" #web="ngModel" placeholder="Website or domain name" class="form-control"
               type="text" required>
 
-            <div *ngIf="web.invalid && (web.dirty || web.touched)">
+            <div *ngIf="web.invalid && (web.dirty || web.touched || formData.submitted)">
               <span class="help-block" *ngIf="web.errors.required">website is required</span>
             </div>
           </div>
@@ -184,19 +185,19 @@
 
       <!-- radio checks -->
       <div class="form-group">
-        <label class="col-md-4 control-label">Do you have hosting?</label>
+        <label class="col-md-4 control-label">Select Gender</label>
         <div class="col-md-4">
           <div class="radio">
             <label>
-                                      <input type="radio"  [(ngModel)] = "model.hosting" #host="ngModel" name="hosting" value="yes" required/> Yes
+                                      <input type="radio"  [(ngModel)] = "model.gender" #host="ngModel" name="gender" value="male" required/> Male
                                   </label>
           </div>
           <div class="radio">
             <label>
-                                      <input type="radio" [(ngModel)] = "model.hosting" name="hosting" #host="ngModel" value="no" required/> No
+                                      <input type="radio" [(ngModel)] = "model.gender" name="gender" #host="ngModel" value="female" required/> Female
                                   </label>
        
-                                  <div *ngIf="host.invalid && (host.dirty || host.touched)">
+                                  <div *ngIf="host.invalid && (host.dirty || host.touched || formData.submitted)">
                                     <span class="help-block" *ngIf="host.errors.required">Hosting is required</span>
                                   </div>
        
