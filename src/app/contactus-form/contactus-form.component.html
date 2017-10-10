@@ -14,10 +14,12 @@
     <fieldset>
 
       <!-- Text input-->
+      <p> Birthday: {{birthday | date:fullDate}} </p>
       <p> valid: {{name.valid}} </p>
       <p> touch: {{name.touched}} </p>
       <p> pristine: {{name.pristine}} </p>
       <p> dirty: {{name.dirty}} </p>
+      
       <input  [(ngModel)]="model.id"  name="id"  class="form-control" type="hidden">
       
       <div class="form-group">

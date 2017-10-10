@@ -17,7 +17,7 @@ export class ContactusFormComponent implements OnInit {
   errorMessage: string;
   model = new Modeldata();
   userid: number;
-
+  birthday = new Date(); 
   constructor(private contactUsService: Contactus, private _router: Router, private _activatedRoute: ActivatedRoute) {
 
   }

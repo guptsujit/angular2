@@ -1,0 +1,33 @@
+
+<div class="container" >
+<h1>Add Product Example</h1> 
+
+<div class="form-group">
+<form>
+  <div class="row">
+    <div class="col-md-4">
+      <input type="text" [(ngModel)]="productname" class="form-control" name="productname" #products="ngModel" required/>
+      <div *ngIf="products.invalid && !errorMessage && (products.dirty || products.touched)">
+          <span class="help-block" *ngIf="products.errors.required">Please enter product name</span>
+        </div>
+        <div *ngIf="errorMessage && !products.dirty">
+            <span class="help-block">{{errorMessage}}</span>
+          </div>
+    </div>
+
+    <div class="col-md-2">
+      <input type="button" (click)="addRow(products)" value="Add Row" class="btn btn-primary"></div>
+  </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+    <tr *ngFor="let row of rows;  let i=index"><td>{{row.productname}}</td>  <input type="button" (click)="deleteRow(products)" value="Delete Row" class="btn btn-primary"></tr>
+    </tbody>
+</table>
+</div></div>

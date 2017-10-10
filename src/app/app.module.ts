@@ -20,6 +20,10 @@ import {PaginationDirective} from 'angular2-bootstrap-pagination/directives/pagi
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { UsercountComponent } from './usercount/usercount.component';
+import { ProductComponent } from './product/product.component';
+import { UsertitlePipe } from './userlist/usertitle.pipe';
+
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'aboutus', component: AboutusComponent },
@@ -27,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'signup', component: ReactiveFormComponent },
   { path: 'contactus/:userid',   component: ContactusFormComponent },
   { path: 'userlist', component: UserlistComponent },
+  { path: 'product', component: ProductComponent },
   { path: '**', redirectTo: 'pagenotfound' },
   { path: '**',  component: PageNotFoundComponent }
 ];
@@ -46,9 +51,12 @@ const appRoutes: Routes = [
     PaginationDirective,
     ReactiveFormComponent,
     UsercountComponent,
+    ProductComponent,
+    UsertitlePipe,
   ],
   imports: [
-    BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes),Ng2SearchPipeModule,Ng2OrderModule,ReactiveFormsModule
+    BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes)
+    ,Ng2SearchPipeModule,Ng2OrderModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
