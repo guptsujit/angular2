@@ -4,7 +4,7 @@
       <div class="header-top">
         <div class="container">
           <div class="row">
-            <div class="col-lg-3 col-sm-3 col-xs-12 main-logo"> <a class="logo"  href=""> <img class="img-responsive" src="images/logo.png" alt="logo"  /> </a> </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12 main-logo">  </div>
             <div class="col-lg-9 col-sm-9 col-xs-12 pull-right top-links">
               <ul class="list-inline">
                 <li>
@@ -48,23 +48,11 @@
                 <li class="dropdown"><a class="main-link" routerLink= '/product'>Product</a> <i class="fa fa-angle-down dropdown-toggle visible-xs " data-toggle="dropdown"></i>
                 
                 </li>
-                <li class="dropdown"><a class="main-link" href="information-resources.php">Information Resources</a> <i class="fa fa-angle-down dropdown-toggle visible-xs " data-toggle="dropdown"></i>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="information-resources.php?tab=1">Specialised Care</a></li>
-                    <li><a href="information-resources.php?tab=2">Policy Information</a></li>
-                    <li><a href="information-resources.php?tab=3">Criminal Justice Updates</a></li>
-                    <li><a href="information-resources.php?tab=4">Assistive Technology</a></li>
-                  </ul>
+                <li class="dropdown" *ngIf ="!userSession"><a class="main-link" routerLink= '/login'>Login</a> <i class="fa fa-angle-down dropdown-toggle visible-xs " data-toggle="dropdown"></i>
+              <li class="dropdown" *ngIf ="userSession"><button class="main-link" (click) = "logout()">Logout</button> <i class="fa fa-angle-down dropdown-toggle visible-xs " data-toggle="dropdown"></i>
+               
                 </li>
-                <li class="dropdown"><a class="main-link" href="research.php">Research</a> <i class="fa fa-angle-down dropdown-toggle visible-xs " data-toggle="dropdown"></i>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="research.php?tab=1">Causes</a></li>
-                    <li><a href="research.php?tab=2">Early Years</a></li>
-                    <li><a href="research.php?tab=3">Brain Structure</a></li>
-                    <li><a href="research.php?tab=4">Cognitive Research</a></li>
-                    <li><a href="research.php?tab=5">Hot Topic </a></li>
-                  </ul>
-                </li>
+          
                 <li class="dropdown"><a class="main-link" href="">Connect to us</a> <i class="fa fa-angle-down dropdown-toggle visible-xs " data-toggle="dropdown"></i>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="">The project</a></li>
@@ -75,6 +63,7 @@
                 </li>
                 <li><a class="main-link" routerLink ="/userlist">User List</a></li>
                 <li><a class="main-link" routerLink = '/contactus'>Add User</a></li>
+                <li ><a *ngIf ="userSession">Welcome {{userSession.email}}</a></li>
               </ul>
             </div>
             <!-- /.navbar-collapse --> 
@@ -84,7 +73,7 @@
       </div>
     </div>
     
-   
+
     
   </header>
   

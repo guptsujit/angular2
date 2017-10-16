@@ -22,16 +22,19 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { UsercountComponent } from './usercount/usercount.component';
 import { ProductComponent } from './product/product.component';
 import { UsertitlePipe } from './userlist/usertitle.pipe';
+import { LoginComponent } from './login/login.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'aboutus', component: AboutusComponent },
-  { path: 'contactus',   component: ContactusFormComponent },
-  { path: 'signup', component: ReactiveFormComponent },
-  { path: 'contactus/:userid',   component: ContactusFormComponent },
-  { path: 'userlist', component: UserlistComponent },
-  { path: 'product', component: ProductComponent },
+  { path: '', component: HomeComponent, data: {title: 'Home'} },
+  { path: 'login', component: LoginComponent , data: {title: 'Login'}},
+  { path: 'aboutus', component: AboutusComponent, data: {title: 'Aboutus'} },
+  { path: 'contactus',   component: ContactusFormComponent ,data: {title: 'Contactus'}},
+  { path: 'signup', component: ReactiveFormComponent,data: {title: 'Signup'} },
+  { path: 'contactus/:userid',   component: ContactusFormComponent,data: {title: 'Contactus Update'} },
+  { path: 'userlist', component: UserlistComponent,data: {title: 'User list'} },
+  { path: 'product', component: ProductComponent, data: {title: 'Product'}},
+
   { path: '**', redirectTo: 'pagenotfound' },
   { path: '**',  component: PageNotFoundComponent }
 ];
@@ -53,6 +56,7 @@ const appRoutes: Routes = [
     UsercountComponent,
     ProductComponent,
     UsertitlePipe,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes)
