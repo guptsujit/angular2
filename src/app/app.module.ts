@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -16,6 +16,9 @@ import { AppComponent } from './app.component';
     BrowserModule,FormsModule,HttpModule,Ng2SearchPipeModule,Ng2OrderModule,ReactiveFormsModule,RoutingModule,
   ],
   providers: [],
+  //if you use custom html tags then it will report that Template parse errors.
+  // below code need to be added to each component where you are using custom HTML tags
+  //schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

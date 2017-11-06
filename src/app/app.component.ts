@@ -23,13 +23,15 @@ export class AppComponent {
     this._router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
         this.getTitle(this._router.routerState, this._router.routerState.root);
+
         this.userSessionData = JSON.parse(localStorage.getItem('currentUser'));
-        if(!localStorage.hasOwnProperty('currentUser')){
+
+      if(!localStorage.hasOwnProperty('currentUser')){
           this._router.navigate(['/login']);
          }
-         if(localStorage.hasOwnProperty('currentUser') && this._router.routerState.snapshot.url=='/login'){
-          this._router.navigate(['/userlist']);
-         }
+        // if(localStorage.hasOwnProperty('currentUser') && this._router.routerState.snapshot.url=='/login'){
+          //this._router.navigate(['/userlist']);
+        // }
 
       }
     });

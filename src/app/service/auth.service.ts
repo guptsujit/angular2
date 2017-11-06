@@ -6,6 +6,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AuthService {
   userData : any = {};
+  private isloggedIn: boolean = false;
+  private redirectUrl: string = '/';
+	private loginUrl: string = '/login';
   constructor(private _http: Http) { }
   login(data) {
     let url = "http://localhost/api/db.php?action=login_user";
@@ -24,9 +27,27 @@ export class AuthService {
 
     let body = res.json();
     this.userData = body;
-    console.log(body);
-    // console.log(body.data || {});
+    if (!this.userData.error) {
+      localStorage.setItem('currentUser', JSON.stringify(this.userData));
+      this.isloggedIn = true;
+    }
     return body;
     //return body.data || {};
   }
+  isUserLoggedIn(): boolean {
+   
+		return this.isloggedIn;
+  }
+  setRedirectUrl(url: string): void {
+		this.redirectUrl = url;
+  }
+  getRedirectUrl(): string {
+		return this.redirectUrl;
+  }
+  getLoginUrl(): string {
+		return this.loginUrl;
+	}
+  logoutUser(): void{
+		this.isloggedIn = false;
+	}
 }

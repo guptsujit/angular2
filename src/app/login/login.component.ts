@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styles: ['.help-block { color: red; }'],
-  providers: [AuthService],
+
 })
 export class LoginComponent implements OnInit {
   model: any = {};

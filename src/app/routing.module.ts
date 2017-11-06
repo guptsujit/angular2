@@ -18,7 +18,8 @@ import { ProductComponent } from './product/product.component';
 import { UsertitlePipe } from './userlist/usertitle.pipe';
 import { LoginComponent } from './login/login.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
-
+import { AuthguardGuard } from './login/authguard.guard';
+import { AuthService } from './service/auth.service';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' } },
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
@@ -26,7 +27,7 @@ const appRoutes: Routes = [
   { path: 'contactus', component: ContactusFormComponent, data: { title: 'Contactus' } },
   { path: 'signup', component: ReactiveFormComponent, data: { title: 'Signup' } },
   { path: 'contactus/:userid', component: ContactusFormComponent, data: { title: 'Contactus Update' } },
-  { path: 'userlist', component: UserlistComponent, data: { title: 'User list' } },
+  { path: 'userlist', component: UserlistComponent, data: { title: 'User list' }, canActivate: [AuthguardGuard]},
   { path: 'product', component: ProductComponent, data: { title: 'Product' } },
   { path: '**', redirectTo: 'pagenotfound' },
   { path: '**', component: PageNotFoundComponent }
@@ -36,12 +37,13 @@ const appRoutes: Routes = [
   imports: [
     CommonModule, RouterModule.forRoot(appRoutes)
   ], exports: [RouterModule],
-  declarations: []
+  declarations: [AboutusComponent,LeftmenuComponent,HomeComponent,PageNotFoundComponent],
+  providers: [AuthguardGuard,AuthService],
 })
 export class RoutingModule { }
 export const routingComponents = [
-  UsersComponent, HeaderComponent, FooterComponent, HomeMenuComponent, HomeComponent, AboutusComponent, NewsComponent,
-  ContactusFormComponent, UserlistComponent, PageNotFoundComponent, UsercountComponent, ProductComponent,
-  UsertitlePipe, LoginComponent, LeftmenuComponent, ReactiveFormComponent
+  UsersComponent, HeaderComponent, FooterComponent,HomeMenuComponent, NewsComponent,
+  ContactusFormComponent, UserlistComponent, UsercountComponent, ProductComponent,
+  UsertitlePipe, LoginComponent, ReactiveFormComponent
 
 ];
