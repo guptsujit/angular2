@@ -22,7 +22,7 @@ export class UserlistComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUsers()
-
+    //this.fetchUsersWithPromise();
   }
   //this will also work
   /*fetchUsers() {
@@ -59,6 +59,11 @@ export class UserlistComponent implements OnInit {
 
 
   }
+  fetchUsersWithPromise(): void {
+    this.contactUsService.getUserLists()
+      .then( users => this.users = users,
+             error =>  this.errorMessage = <any>error);   
+}
   //this will also work
   /*
   fetchUsers() {

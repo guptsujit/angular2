@@ -51,7 +51,12 @@ export class Contactus {
             .map(this.extractData);
             //.catch(this.handleErrorObservable);
     }
-
+    getUserLists(): Promise<Modeldata[]> {
+        let url = "http://localhost/api/db.php?action=get_user";
+        return this._http.get(url).toPromise()
+        .then(this.extractData)
+            .catch(this.handleErrorPromise);
+    }
     getUserDetail(userid): Observable<Modeldata> {
         let url = "http://localhost/api/db.php?action=edit_user&userid=" + userid;
         return this._http.get(url)
@@ -80,6 +85,7 @@ export class Contactus {
         console.error(error.message || error);
         return Observable.throw(error.message || error);
     }
+
     private extractData(res: Response) {
 
         let body = res.json();
